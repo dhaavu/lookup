@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!--Make sure the form has the autocomplete function switched off:-->
+<form class="frm" autocomplete="off" action="">
+    <div class="autocomplete">
+      <input id="myInput" type="text" name="myCountry" placeholder="Country">
+    </div>
+   
+    <div id="text">
+        <ul class="list">
+  
+        </ul>
+  
+    </div>
+  </form>
+
+
+<script>
+    var arr = ["India", "Indonasia", "United States", "United Arab Emirates", "United Kingdom"]; 
+
+    $('#myInput').keyup(function(){
+        if(this.value != ''){
+            $('.list').html(""); 
+            var exp = new RegExp(this.value, 'i'); 
+            var data = arr.filter(country => exp.test(country)); 
+            var cList = $('.list'); 
+            $.each(data, function(i)
+            {
+                var li = $('<li/>')
+                    .addClass('ui-menu-item')
+                    .attr('role', 'menuitem')
+                    .appendTo(cList);
+                var aaa = $('<a/>')
+                    .addClass('ui-all')
+                    .text(data[i])
+                    .appendTo(li);
+            });
+        }
+     
+       // $('#text').text(data); 
+    })
+
+</script>
+<style>
+    .ui-menu-item{
+        list-style: none;
+        border: 1px solid grey; 
+        padding:10px;
+        font-size: 20px; 
+    }
+
+    .list{
+        padding:0px; 
+        margin:0px; 
+        width:100%; 
+    }
+    #myInput{
+      
+       margin:0px;  
+        font-size: 20px; 
+       padding:10px; 
+       box-sizing: border-box;
+       width:100%; 
+    }
+    body{
+        margin:0px; 
+        padding:0px; 
+    }
+    .frm{
+        margin:20px; 
+    }
+</style>
+</body>
+</html>
